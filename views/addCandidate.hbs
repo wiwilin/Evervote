@@ -1,0 +1,23 @@
+<body>
+	<header class="App-header">
+	<!--Navigation Bar-->
+		<div id=logoTitle>
+			<a href='/'>
+				<img src="imgs/logo.svg" class="App-logo" alt="logo" />
+				<h1 class="App-title">EverVote</h1>
+			</a>
+		</div>
+		<form action="/logout" method="post">
+			<button id="login">Logout</button>
+		</form>
+	</header>
+
+	<form action="/addCandidate" method="post">
+	<!--Form to add a candidate to the database-->
+		<div class="input">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name">
+		</div>
+		<button type="submit">INSERT</button>
+	</form>
+</body>

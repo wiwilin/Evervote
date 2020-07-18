@@ -1,0 +1,75 @@
+<!-- Warning alert -->
+{{#if successfulVoteName}}
+  <div class="row">
+    <div class="col-sm-12">
+  		<div class="alert alert-success alert-dismissible fade show mt-4" style="margin-bottom:auto!important" role="alert">
+  		  Successfully voted for {{successfulVoteName}}.
+  		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  		    <span aria-hidden="true">&times;</span>
+  		  </button>
+  		</div>
+  	</div>
+  </div>
+{{/if}}
+{{#if successfulUnvoteName}}
+  <div class="row">
+    <div class="col-sm-12">
+  		<div class="alert alert-success alert-dismissible fade show mt-4" style="margin-bottom:auto!important" role="alert">
+  		  Successfully unvoted for {{successfulUnvoteName}}.
+  		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  		    <span aria-hidden="true">&times;</span>
+  		  </button>
+  		</div>
+  	</div>
+  </div>
+{{/if}}
+
+<div class="jumbotron" style="background-color:#c7bbdd">
+
+    <h4 class="text-center">UMSU President Candidates</h4>
+    <hr class="my-2">
+
+    <div class="row pt-4">
+        {{# each items }}
+            {{#if this.candidate}}
+                <div class="col-lg-4 col-sm-6 col-12 col-xs-12 mb-3">
+                    <div class="card text-center bg-purple">
+                        <!-- Image -->
+                        <div class="pt-5 pl-5 pr-5 pb-0">
+                            <!-- Both are the same-->
+                            {{#if_eq ../myVote ../myAllocatedVote}}
+                                {{#if_eq this._id ../myVote}}
+                                    <span class="badge badge-pill badge-info notify-badge">My Vote</span>
+                                    <span class="badge badge-pill badge-success bg-evervote notify-badge-nest">My Allocated Vote</span>
+                                {{/if_eq}}
+                                <!-- Different -->
+                            {{else}}
+                                {{#if_eq this._id ../myVote}}
+                                    <span class="badge badge-pill badge-info notify-badge">My Vote</span>
+                                {{/if_eq}}
+
+                                {{#if_eq this._id ../myAllocatedVote}}
+                                    <span class="badge badge-pill badge-success bg-evervote notify-badge">My Allocated Vote</span>
+                                {{/if_eq}}
+                            {{/if_eq}}
+
+                            <!-- User as Candidate -->
+                            {{#if_eq this._id ../userId}}
+                                <span class="badge badge-pill badge-primary notify-badge-you">You</span>
+                            {{/if_eq}}
+
+
+                              <img src="/uploads/{{this.img}}" class="embed-responsive embed-responsive-4by3 p-4" alt="{{this.name}}">
+                        </div>
+                        <!-- Body -->
+                        <div class="card-body" style="background-color: #e8dbff;">
+                            <h5 class="card-title">{{ this.name }}</h5>
+                            <p class="card-text"><small class="text-dark">{{this.voteCount}} votes</small></p>
+                            <a href="/users/{{this._id}}" class="btn btn-dark btn-purple">See profile</a>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+    </div>
+</div>

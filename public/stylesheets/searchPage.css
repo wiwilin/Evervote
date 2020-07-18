@@ -1,0 +1,11 @@
+
+.candidate {
+    margin: 10px;
+    display: grid;
+    grid-template-columns:15vw 15vw auto;
+    justify-content:space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #e8dbff;
+    border-radius: 10px;
+}

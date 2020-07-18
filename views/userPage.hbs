@@ -1,0 +1,47 @@
+<div class="jumbotron mt-4" style="background-color:#c7bbdd">
+	<div class="card">
+	  <div class="card-header bg-evervote text-white">
+	    <span style="font-size:20px;"><b>Full Name:</b> {{item.name}}</span>
+	  </div>
+	  <div class="card-body bg-purple">
+			<!-- Data of candidate -->
+			<div class="row align-items-center">
+				<div class="col-md-8">
+			    <h4 class="card-text text-justify"><b>Biography:</b> {{item.bio}}</h4>
+					<h4><b>Votes received:</b> {{item.voteCount}}</h4>
+				</div>
+
+				<div class="col-md-4 text-center">
+					<img src="/uploads/{{item.img}}" style="width:150px;" alt="...">
+				</div>
+			</div>
+
+			<hr class="my-3">
+
+			{{#if_eq item._id loggedin.vote_to}}
+				<!-- Remove Vote -->
+				<form action="/../unvote" method="post">
+					<input type="hidden" id="id" name="id" value={{item._id}}>
+					<button class="btn btn-dark btn-purple" type="submit">Remove Vote</button>
+				</form>
+			{{else if_eq loggedin.vote_to ''}}
+				{{#if cycle}}
+					<!-- Cycling vote not allowed -->
+					<button class="btn btn-dark mb-3" disabled>Vote</button>
+					<p><i>You cannot vote for this candidate as this produces a cycle.</i></p>
+				{{else}}
+					<!-- Vote -->
+					<form class="voteForm" action="/../vote" method="post">
+						<input type="hidden" id="id" name="id" value={{item._id}}>
+						<button class="btn btn-dark btn-purple" type="submit">Vote</button>
+					</form>
+				{{/if}}
+			{{else}}
+				<!-- Remove vote first -->
+				<button class="btn btn-dark mb-3" disabled>Vote</button>
+				<p><i>You must remove your <a href='/users/{{loggedin.vote_to}}'>last</a> vote before voting for this candidate.</i></p>
+			{{/if_eq}}
+	  </div>
+	</div>
+
+</div>

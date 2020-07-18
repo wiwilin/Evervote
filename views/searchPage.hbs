@@ -1,0 +1,32 @@
+<div class="jumbotron pt-5 bg-light mt-4">
+  <h4 class="text-center">Search Results</h4>
+
+  <hr class="my-2">
+
+  {{# each items }}
+    {{#if this.candidate}}
+      <div class="row pt-4">
+        <div class="col-lg-12">
+          <div class="candidate bg-purple">
+            <div class="row text-center align-items-center">
+              <div class="col-lg-3">
+                <h4>Name: {{ this.name }}</h4>
+              </div>
+              <div class="col-lg-3">
+                <h4>Votes: {{this.voteCount}}</h4>
+              </div>
+              <div class="col-lg-3">
+                <img src="/uploads/{{this.img}}" class="candidateImage w-50 h-50" alt="image of candidate" />
+              </div>
+              <div class="col-lg-3">
+                <a href="/users/{{this._id}}">
+                  <button class="btn btn-dark btn-purple">See Profile</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  {{/each}}
+</div>

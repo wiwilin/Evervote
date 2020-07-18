@@ -1,0 +1,50 @@
+<div class="candidateDetailsEdit">
+  <div>
+    <h1>{{item.name}}</h1>
+  </div>
+  <!-- Change Name -->
+  <form class="mt-5" action="../changeName" method="post">
+    <label>Name</label>
+    <div class="d-flex flex-row ">
+    <input type="text" class="form-control" id="name" name="name" value="{{item.name}}">
+    <button class="editButton ml-4" type="submit"> Update</button>
+    </div>
+  </form>
+
+  <!-- Profile Pic -->
+  <div style="margin-top: -10%; margin-bottom: 5%" width="40%"  padding="10px">
+    <img src="/uploads/{{item.img}}"  class="candidateImage"/>
+  </div>
+  <br/>
+
+  <form class="form-inline-block" action=" ../changePic" method="post" enctype="multipart/form-data">
+    <input  type="file" name="image" accept="image/*" onchange="form.submit(); window.location.reload()">
+  </form>
+
+  <!-- Change Bio -->
+  <form action="../changeBio" style="margin-top: -25%" method="post">
+    <p>Bio</p>
+    <textarea type="text" rows="3" class="form-control" id="bio" name="bio">{{item.bio}}</textarea>
+    <button class="editButton mt-2 float-lg-right" type="submit"> Update</button>
+  </form>
+
+  <div class="mt-5">
+    {{#if item.candidate}}
+      <p><i>You are currently a candidate.</i><br> Candidates can be voted for by other users.</p>
+    {{else}}
+      <p><i>You are currently not a candidate.</i><br> Candidates can be voted for by other users.</p>
+    {{/if}}
+  </div>
+  <!-- Become candidate/withdraw candidacy -->
+  {{#if item.candidate}}
+    <form class="mt-5 float-left" action="../unnominate" method="post">
+      <input type="hidden" id="id" name="id">
+      <button class="editButton update" type="submit">Withdraw Candidacy</button>
+    </form>
+  {{else}}
+    <form class="" action="../nominate" method="post">
+      <input type="hidden" id="id" name="id">
+      <button class="editButton update" type="submit">Become Candidate</button>
+    </form>
+  {{/if}}
+</div>

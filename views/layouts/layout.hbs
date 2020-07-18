@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Evervote </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+
+  <body>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-evervote">
+      <!-- Logo -->
+      <a class="navbar-brand" href='/'>
+        <img src="/imgs/logo.svg" width="50" height="50" alt=""/>
+        Evervote
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+          </li>
+        </ul>
+
+        {{#unless notLoggedin}}
+        <!-- Search input -->
+        <form class="form-inline my-2 my-lg-0 mr-2" action='/linksearch/' method="post">
+          <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search Candidate" aria-label="Search" required>
+          <button class="btn bg-evervote-light my-2 my-sm-0" type="submit">
+            <img src="/imgs/search.svg" class="searchMag"/>
+          </button>
+        </form>
+        {{/unless}}
+
+        {{#if notLoggedin}}
+        <!-- Menu dropdown -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/signin">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign up</a>
+          </li>
+        </ul>
+        {{else}}
+        <!-- Menu dropdown -->
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <svg class="bi bi-person-circle rounded-circle card-shadow mt-1" width="40" height="40" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+              </svg>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right bg-evervote-light" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/users/{{this.userId}}">Profile</a>
+              <div class="dropdown-divider"></div>
+              <form method="post" action="/logout" style="cursor:pointer;">
+                <input type="hidden" name="name" value="value" />
+                <a class="dropdown-item" onclick="this.parentNode.submit();">Logout</a>
+              </form>
+            </div>
+          </li>
+        </ul>
+        {{/if}}
+
+      </div>
+    </nav>
+
+    <div class="container">
+      {{{ body }}}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

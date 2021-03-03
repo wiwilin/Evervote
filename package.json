@@ -23,7 +23,7 @@
     "node-localstorage": "^2.1.6",
     "nodemon": "^2.0.3",
     "npm-check-updates": "^4.1.2",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
